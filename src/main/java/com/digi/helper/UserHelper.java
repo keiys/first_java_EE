@@ -1,6 +1,6 @@
 package com.digi.helper;
 
-import com.digi.exceptions.AlreadyExistException;
+import com.digi.exceptions.UserAlreadyExistException;
 import com.digi.exceptions.UserBadRequestException;
 import com.digi.model.User;
 import com.digi.repository.UserRepository;
@@ -55,7 +55,7 @@ public class UserHelper {
         UserRepository userRepository = new UserRepository();
         User user = userRepository.getByEmail(email);
         if(user != null){
-            throw new AlreadyExistException("User with this email address already exists: " + email);
+            throw new UserAlreadyExistException("User with this email address already exists: " + email);
         }
 
     }

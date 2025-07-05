@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    
     <welcome-file-list>
-        <welcome-file>login-page.html</welcome-file>
+        <welcome-file>/login-page.html</welcome-file>
     </welcome-file-list>
+
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
         <servlet-class>com.digi.controller.RegistrationServlet</servlet-class>
@@ -16,6 +18,21 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>VerificationServlet</servlet-name>
+        <servlet-class>com.digi.controller.VerificationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerificationServlet</servlet-name>
+        <url-pattern>/verify-email</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <servlet-class>com.digi.controller.ResetPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <url-pattern>/reset-password</url-pattern>
+    </servlet-mapping>
+
 </web-app>
-
-

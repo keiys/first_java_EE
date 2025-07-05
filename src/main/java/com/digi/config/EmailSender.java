@@ -1,13 +1,15 @@
 package com.digi.config;
 
 import java.util.Properties;
+
+import com.digi.exceptions.UserApiException;
 import jakarta.mail.*;
 
 
 public class EmailSender {
 
-    private static final String password = "ygkeidtowvhhmgbo";
-    private static final String username = "bookingsystembook@yandex.ru";
+    private static final String PASSWORD = "ygkeidtowvhhmgbo";
+    private static final String USERNAME = "bookingsystembook@yandex.ru";
 
     public static void sendEmail(String to, String subject, String text) {
 
@@ -20,14 +22,17 @@ public class EmailSender {
         props.put("mail.smtp.port", "465");
 
         Session session = Session.getInstance(props,
-                getPasswordAuthentication() → {
-                    return new PasswordAuthentication(username, password);
-        });
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(USERNAME, PASSWORD);
+                    }
+                }
+        );
 
         try {
             EmailUtil.sendEmail(session, to, subject, text);
         }catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new UserApiException("Error while sending email");
         }
     }
 }

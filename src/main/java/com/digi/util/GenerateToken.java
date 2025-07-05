@@ -7,4 +7,8 @@ public class GenerateToken {
     public static String generateVerifyCode() {
         return RandomStringUtils.random(8, true, true);
     }
+
+    public static String generateResetToken() {
+        return RandomStringUtils.random(10, true, true);
+    }
 }

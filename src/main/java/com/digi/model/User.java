@@ -1,5 +1,6 @@
 package com.digi.model;
 
+import com.digi.enums.Status;
 import lombok.*;
 
 /**
@@ -19,7 +20,7 @@ public class User {
     private String email;
     private String password;
     private String verificationCode;
-    private String status;
+    private Status status;
     private String resetToken;
 
 }

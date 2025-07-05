@@ -1,4 +1,5 @@
 package com.digi.repository;
+import com.digi.enums.Status;
 import com.digi.exceptions.UserApiException;
 import com.digi.model.User;
 import com.digi.util.MyDataSource;
@@ -27,11 +28,11 @@ public class UserRepository {
             preparedStatement.setString(5, user.getEmail());
             preparedStatement.setString(6, user.getPassword());
             preparedStatement.setString(7, user.getVerificationCode());
-            preparedStatement.setString(8, user.getStatus());
+            preparedStatement.setString(8, String.valueOf(user.getStatus()));
             preparedStatement.setString(9, user.getResetToken());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new UserApiException("Error while creating user");
+            throw new UserApiException("Error while creating user", e);
         }
     }
 
@@ -49,6 +50,22 @@ public class UserRepository {
 
     }
 
+    public void updateStatus(int id, Status status, String verifyCode)  {
+        Connection connection = MyDataSource.getConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update users set status =?, verification_code = ? where id = ?");
+
+            preparedStatement.setString(1, String.valueOf(status));
+            preparedStatement.setString(2, null);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+        }catch (SQLException e) {
+            throw new UserApiException("Error while updating status of user");
+        }
+    }
+
     private User toUser (ResultSet resultSet){
         User user = null;
         try{
@@ -59,11 +76,29 @@ public class UserRepository {
                 int year = resultSet.getInt("year");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                user = new User(id, name, surname, year, email, password, null, null, null);
+                String verificationCode = resultSet.getString("verification_code");
+                String status = resultSet.getString("status");
+                String resetToken = resultSet.getString("reset_token");
+                user = new User(id, name, surname, year, email, password, verificationCode, Enum.valueOf(Status.class, status), resetToken);
             }
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return user;
     }
+
+    public void updateResetToken(int id, String resetToken) {
+        Connection connection = MyDataSource.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update users set reset_token = ? where id = ?");
+
+            preparedStatement.setString(1, resetToken);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new UserApiException("Error while updating reset token");
+        }
+    }
+
 }

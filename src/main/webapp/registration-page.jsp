@@ -9,24 +9,47 @@
 <html>
 <head>
     <title>Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="login-box">
+    <div class="logo">REGISTRATION</div>
 
-<%
-    String errorMessage = (String) request.getAttribute("errorMessage");
-    if (errorMessage != null) {
-        response.getWriter().println(errorMessage);
-    }
-%>
+    <%
+        String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null) {
+            response.getWriter().println(errorMessage);
+        }
+    %>
 
-<form method="post" action="/registration">
-    <h1>Registration Page</h1><br>
-    name: <input type="text" name="name" placeholder="name"><br><br>
-    surname: <input type="text" name="surname" placeholder="surname"><br><br>
-    year: <input type="text" name="year" placeholder="year"><br><br>
-    email: <input type="text" name="email" placeholder="email"><br><br>
-    password: <input type="text" name="password" placeholder="password"><br><br>
-    <input type="submit">
-</form>
+    <form method="post" action="/registration">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" placeholder="name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Surname</label>
+            <input type="text" class="form-control" name="surname" placeholder="surname">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Year</label>
+            <input type="text" class="form-control" name="year" placeholder="year">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="email">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="password">
+        </div>
+        <button type="submit" class="btn-login">SIGN UP</button>
+    </form>
+
+    <div class="forgot-link">
+        <a href="login-page.jsp">Back to login</a>
+    </div>
+</div>
 </body>
 </html>

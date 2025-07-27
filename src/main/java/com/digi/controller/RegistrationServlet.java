@@ -1,6 +1,7 @@
 package com.digi.controller;
 
 
+import com.digi.enums.Status;
 import com.digi.exceptions.UserAlreadyExistException;
 import com.digi.exceptions.UserApiException;
 import com.digi.exceptions.UserBadRequestException;
@@ -20,11 +21,11 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserServiceImpl service = new UserServiceImpl();
         HttpSession session = request.getSession();
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-        String year = request.getParameter("year");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String name = request.getParameter("name").trim();
+        String surname = request.getParameter("surname").trim();
+        String year = request.getParameter("year").trim();
+        String email = request.getParameter("email").trim();
+        String password = request.getParameter("password").trim();
         int parsedYear = 0;
         String errorMessage = null;
 
@@ -38,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
             request.setAttribute("errorMessage", errorMessage);
             request.getRequestDispatcher("/registration-page.jsp").forward(request, response);
         }else {
-            User user = new User(0, name, surname,parsedYear , email, password, null, null, null);
+            User user = new User(0, name, surname,parsedYear , email, password, null, Status.INACTIVE, null);
 
             try {
                 service.createUser(user);
@@ -54,8 +55,5 @@ public class RegistrationServlet extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
 }

@@ -12,38 +12,38 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class VerificationServlet extends HttpServlet {
+public class InputTokenServlet extends HttpServlet {
 
-    @Override
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserServiceImpl userService = new UserServiceImpl();
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
-        String verifyCode = request.getParameter("verifyCode");
+
+        String resetToken = request.getParameter("resetToken");
 
         try {
-            userService.verifyEmail(verifyCode, email);
+            userService.checkResetToken(email, resetToken);
         } catch (UserApiException | UserBadRequestException | UserNotFoundException e) {
             String errorMessage = e.getMessage();
             request.setAttribute("errorMessage", errorMessage);
-            request.getRequestDispatcher("/verification-page.jsp").forward(request, response);
+            request.getRequestDispatcher("/input-token-page.jsp").forward(request, response);
         }
-        response.sendRedirect("/login-page.jsp");
+        response.sendRedirect("/change-password-page.jsp");
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserServiceImpl userService = new UserServiceImpl();
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
 
         try {
-            userService.sendVerifyCode(email);
-            response.sendRedirect("/verification-page.jsp");
+            userService.sendResetToken(email);
+            response.sendRedirect("/input-token-page.jsp");
         } catch (UserBadRequestException | UserNotFoundException e) {
             String errorMessage = e.getMessage();
             request.setAttribute("errorMessage", errorMessage);
-            request.getRequestDispatcher("/verification-page.jsp").forward(request, response);
+            request.getRequestDispatcher("/input-token-page.jsp").forward(request, response);
         }
     }
 }

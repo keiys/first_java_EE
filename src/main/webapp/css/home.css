@@ -1,0 +1,77 @@
+body {
+    background: linear-gradient(145deg, #1c1c2c, #1f1f30);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    margin: 40px 0 20px;
+    font-size: 36px;
+    color: white;
+}
+
+.container {
+    background: #2a2a40;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 20px #1a1a2a, -8px -8px 20px #30304a;
+    max-width: 900px;
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.profile-img {
+    flex: 1;
+}
+
+.profile-img img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 12px #141422, -4px -4px 12px #30304a;
+}
+
+.profile-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    color: #eee;
+    margin: 0;
+}
+
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-action {
+    background-color: #8b76ad;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px #141422, -2px -2px 8px #30304a;
+    transition: background 0.3s ease;
+}
+
+.btn-action:hover {
+    background-color: #4b3675;
+}

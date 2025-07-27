@@ -1,21 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
-  User: DiGi School
-  Date: 6/25/2025
-  Time: 9:32 PM
+  User: Dell
+  Date: 14.07.2025
+  Time: 17:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Reset Password</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
 <div class="login-box">
-    <div class="logo">RESET PASSWORD</div>
+    <div class="logo">WELCOME</div>
 
     <%
         String errorMessage = (String) request.getAttribute("errorMessage");
@@ -24,14 +23,22 @@
         }
     %>
 
-    <form method="get" action="/reset-password">
+    <form method="post" action="/login-page">
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input  type="text" name="email" placeholder="email">
+            <input type="text" class="form-control" name="email" placeholder="email">
         </div>
-        <button type="submit" class="btn-login">SUBMIT</button>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="password">
+        </div>
+        <button type="submit" class="btn-login">LOG IN</button>
     </form>
-</div>
 
+    <div class="forgot-link">
+        <a href="registration-page.jsp">Registration</a> |
+        <a href="reset-password-page.jsp">Reset password</a>
+    </div>
+</div>
 </body>
 </html>

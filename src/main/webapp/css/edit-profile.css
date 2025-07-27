@@ -1,0 +1,122 @@
+body {
+    background: linear-gradient(145deg, #1c1c2c, #1f1f30);
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.edit-container {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+
+.edit-box {
+    background: #2a2a40;
+    border-radius: 15px;
+    box-shadow: 8px 8px 20px #1a1a2a, -8px -8px 20px #30304a;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.edit-box input {
+    background-color: #2f2f45;
+    border: 1px solid #666;
+    border-radius: 8px;
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+.edit-box input::placeholder {
+    color: #bbb;
+}
+
+.edit-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.form-label {
+    color: #eee;
+}
+
+.form-control {
+    background-color: #2f2f45 ;
+    border: 1px solid #666 ;
+    border-radius: 8px;
+    color: #fff ;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 15px;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: #bbb;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #66afe9 ;
+    background-color: #22223a ;
+    box-shadow: none;
+}
+
+.btn-login {
+    background-color: #8b76ad;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 2px 2px 8px #141422, -2px -2px 8px #30304a;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-login:hover {
+    background-color: #4b3675;
+}
+
+.error-msg {
+    color: #ff6666;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .row .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .edit-box {
+        padding: 20px;
+    }
+}
+
+.divider {
+    height: 2px;
+    background-color: #a8a3b3;
+    color: #a8a3b3;
+    margin: 0;
+}

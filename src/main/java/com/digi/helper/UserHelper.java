@@ -3,7 +3,7 @@ package com.digi.helper;
 import com.digi.exceptions.UserAlreadyExistException;
 import com.digi.exceptions.UserBadRequestException;
 import com.digi.model.User;
-import com.digi.repository.UserRepository;
+import com.digi.repository.impl.UserRepositoryImpl;
 import org.apache.commons.lang3.StringUtils;
 
 public class UserHelper {
@@ -52,7 +52,7 @@ public class UserHelper {
     }
 
     public void validUserExistence (String email){
-        UserRepository userRepository = new UserRepository();
+        UserRepositoryImpl userRepository = new UserRepositoryImpl();
         User user = userRepository.getByEmail(email);
         if(user != null){
             throw new UserAlreadyExistException("User with this email address already exists: " + email);

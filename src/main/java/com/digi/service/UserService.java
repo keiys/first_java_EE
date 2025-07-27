@@ -16,6 +16,11 @@ public interface UserService {
 
 
     boolean sendVerifyCode(String email);
-
+    boolean sendResetToken(String email);
     void resetPassword(String email);
+    boolean checkResetToken(String email, String resetToken);
+    void changePassword(String email, String password, String confirmPassword);
+    User login(String email, String password);
+    boolean checkOldPassword(int id, String oldPassword);
+    void updateUser(int id, String name, String surename, int year);
 }
